@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.about-us-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', cursive; /* Pixelated font */
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: auto;
+    border: 4px solid #FF0000; /* Retro-style border */
+    border-radius: 0; /* Square edges for pixelated effect */
+    padding: 20px;
+    background-color: #0D0D0D; /* Dark retro background color */
+    box-sizing: border-box;
+    color: #FFFFFF; /* Light text for contrast */
+}
+
+/* ... (keep other existing styles and adapt font sizes/colors as needed) */
+
+.social-media-link:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+    color: #00FF00; /* Bright hover color for interactive feedback */
+}
+
+.phase-container:hover {
+    background-color: #282c34; /* Adjust to a more retro color if needed */
+    color: #FFA500; /* Retro hover text color */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* ... (other styles) */
+
+/* Make sure to adjust the font sizes, colors, and other properties of elements like '.title', '.subtitle', '.phase-title', etc., to match the pixelated theme */

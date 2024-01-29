@@ -1,0 +1,22 @@
+/* Styling for ContractAddress component */
+p {
+    margin-bottom: 10px;
+  }
+  
+  .Label {
+    font-weight: bold;
+  }
+  
+  .ExplorerLink {
+    color: #3498db; /* Default link color */
+    text-decoration: none;
+    border-bottom: 1px dotted #ccc; /* Default border style */
+    transition: border-color 0.3s ease; /* Transition effect for border color */
+  
+    /* Hover styles */
+    &:hover {
+      border-bottom-style: solid;
+      border-bottom-color: #2c3e50; /* Hover border color */
+    }
+  }
+  

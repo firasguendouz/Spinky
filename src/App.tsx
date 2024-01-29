@@ -1,89 +1,72 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
+import { AboutUs, Generator, PageNotFound, Unlock } from 'pages';
 import {
-  AxiosInterceptorContext, // using this is optional
+  AxiosInterceptorContext,
   DappProvider,
   Layout,
-  TransactionsToastList,
-  NotificationModal,
-  SignTransactionsModals
-  // uncomment this to use the custom transaction tracker
-  // TransactionsTracker
 } from 'components';
-
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import {
   apiTimeout,
-  walletConnectV2ProjectId,
   environment,
-  sampleAuthenticatedDomains
-} from 'config';
-import { RouteNamesEnum } from 'localConstants';
-import { PageNotFound, Unlock } from 'pages';
-import { routes } from 'routes';
+  sampleAuthenticatedDomains,
+  walletConnectV2ProjectId
+} from 'config/config.mainnet';
+
 import { BatchTransactionsContextProvider } from 'wrappers';
+import { RouteNamesEnum } from 'localConstants';
+import { routes } from 'routes';
 
 const AppContent = () => {
   return (
     <DappProvider
-      environment={environment}
-      customNetworkConfig={{
-        name: 'customConfig',
-        apiTimeout,
-        walletConnectV2ProjectId
-      }}
-      dappConfig={{
-        shouldUseWebViewProvider: true,
-        logoutRoute: RouteNamesEnum.unlock
-      }}
-      customComponents={{
-        transactionTracker: {
-          // uncomment this to use the custom transaction tracker
-          // component: TransactionsTracker,
-          props: {
-            onSuccess: (sessionId: string) => {
-              console.log(`Session ${sessionId} successfully completed`);
-            },
-            onFail: (sessionId: string, errorMessage: string) => {
-              console.log(`Session ${sessionId} failed. ${errorMessage ?? ''}`);
-            }
-          }
-        }
-      }}
+      environment= { environment }
+  customNetworkConfig = {{
+    name: 'customConfig',
+      apiTimeout,
+      walletConnectV2ProjectId
+  }
+}
+dappConfig = {{
+  shouldUseWebViewProvider: true,
+    logoutRoute: RouteNamesEnum.unlock
+}}
+      
     >
-      <AxiosInterceptorContext.Listener>
-        <Layout>
-          <TransactionsToastList />
-          <NotificationModal />
-          <SignTransactionsModals />
-          <Routes>
-            <Route path={RouteNamesEnum.unlock} element={<Unlock />} />
-            {routes.map((route) => (
-              <Route
-                path={route.path}
-                key={`route-key-'${route.path}`}
-                element={<route.component />}
-              />
+  <AxiosInterceptorContext.Listener>
+  <Layout>
+  <Routes>
+  <Route path={ RouteNamesEnum.unlock } element = {< Unlock />} />
+    < Route path = "/about" element = {< AboutUs />} />
+      < Route path = "/generator" element = {< Generator />} />
+
+{
+  routes.map((route) => (
+    <Route
+                path= { route.path }
+                key = {`route-key-'${route.path}`}
+element = {< route.component />}
+/>
             ))}
-            <Route path='*' element={<PageNotFound />} />
-          </Routes>
-        </Layout>
-      </AxiosInterceptorContext.Listener>
-    </DappProvider>
+<Route path='*' element = {< PageNotFound />} />
+  < /Routes>
+  < /Layout>
+  < /AxiosInterceptorContext.Listener>
+  < /DappProvider>
   );
 };
 
 export const App = () => {
   return (
     <AxiosInterceptorContext.Provider>
-      <AxiosInterceptorContext.Interceptor
-        authenticatedDomains={sampleAuthenticatedDomains}
-      >
-        <Router>
-          <BatchTransactionsContextProvider>
-            <AppContent />
-          </BatchTransactionsContextProvider>
-        </Router>
-      </AxiosInterceptorContext.Interceptor>
-    </AxiosInterceptorContext.Provider>
+    <AxiosInterceptorContext.Interceptor
+        authenticatedDomains= { sampleAuthenticatedDomains }
+    >
+    <Router>
+    <BatchTransactionsContextProvider>
+    <AppContent />
+    < /BatchTransactionsContextProvider>
+    < /Router>
+    < /AxiosInterceptorContext.Interceptor>
+    < /AxiosInterceptorContext.Provider>
   );
 };

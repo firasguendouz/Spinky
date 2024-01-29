@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+footer {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 65ch; /* Adjust as needed */
+    padding-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    text-align: center;
+    color: #ccc; /* Light grey text color */
+    font-family: 'Press Start 2P', cursive; /* Pixelated font */
+    background-color: #000; /* Dark background color */
+}
+
+footer a {
+    color: #ccc; /* Light grey link color */
+    text-decoration: none;
+    transition: color 0.3s, text-decoration 0.3s;
+    font-size: 0.8rem; /* Adjusted for pixelated font */
+}
+
+footer a:hover {
+    color: #ff4500; /* Bright color on hover for retro feel */
+    text-decoration: underline;
+}
+
+footer .flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer .flex a:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+footer .flex a:hover {
+    cursor: pointer;
+}

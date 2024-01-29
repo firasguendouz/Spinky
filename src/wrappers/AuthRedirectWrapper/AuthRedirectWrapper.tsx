@@ -1,7 +1,7 @@
-import type { PropsWithChildren } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useGetIsLoggedIn } from 'hooks';
+import type { PropsWithChildren } from 'react';
 import { RouteNamesEnum } from 'localConstants';
+import { useGetIsLoggedIn } from 'hooks';
 
 interface AuthRedirectWrapperPropsType extends PropsWithChildren {
   requireAuth?: boolean;

@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.card {
+    background-color: #2C3E50; /* Dark slate background for contrast */
+    border: 4px solid #34495E; /* Pixelated border */
+    box-shadow: 4px 4px 0 #34495E; /* Pixel shadow for depth */
+    padding: 16px; /* Pixel style padding */
+    margin-bottom: 16px; /* Space between cards */
+    color: #ECF0F1; /* Light text for readability */
+    font-family: 'Press Start 2P', Arial, sans-serif; /* Pixel art font */
+    border-radius: 0; /* Sharp corners to match pixel theme */
+    transition: transform 0.2s; /* Smooth transition for hover effect */
+}
+
+.card-title {
+    font-size: 0.75rem; /* Adjusted for pixelated font */
+    margin-bottom: 8px; /* Pixel style spacing */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-title svg {
+    filter: drop-shadow(1px 1px 0 #2C3E50) drop-shadow(-1px -1px 0 #2C3E50); /* Pixelated shadow on icon */
+}
+
+.card-description {
+    font-size: 0.65rem; /* Adjusted for pixelated font */
+    color: #95A5A6; /* Grey for less emphasis */
+    border-top: 2px dotted #7F8C8D; /* Dotted line for separation, pixel style */
+    padding-top: 8px; /* Space after line */
+}
+
+/* Hover effect on card */
+.card:hover {
+    transform: scale(1.05); /* Slight enlargement for interaction */
+}
+
+.card-title a {
+    color: #3498DB; /* Blue link color */
+    text-decoration: none; /* No underline for clean look */
+}
+
+.card-title a:hover {
+    color: #2980B9; /* Darker blue on hover */
+    text-decoration: underline; /* Underline on hover for clarity */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 12px; /* Less space between cards on smaller screens */
+        font-size: 0.65rem; /* Smaller font size for overall content */
+    }
+
+    .card-title {
+        font-size: 0.7rem; /* Slightly smaller title font on mobile */
+    }
+
+    .card-description {
+        font-size: 0.6rem; /* Smaller description font on mobile */
+    }
+}

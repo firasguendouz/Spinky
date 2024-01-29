@@ -1,6 +1,9 @@
-import { Label } from 'components/Label';
+import './ContractAddress.css';
+
 import { ACCOUNTS_ENDPOINT, ExplorerLink } from 'components/sdkDappComponents';
-import { contractAddress } from 'config';
+
+import { Label } from 'components/Label';
+import { contractAddress } from 'config/config.testnet';
 
 export const ContractAddress = () => {
   return (

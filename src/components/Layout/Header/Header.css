@@ -1,0 +1,74 @@
+/* Header.css */
+.pixel-header {
+  background-color: #000; /* Dark theme for the header */
+  color: #fff;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-family: 'Press Start 2P', cursive; /* Pixel art font */
+}
+
+.pixel-nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px; /* Space between navigation items */
+}
+
+.pixel-nav li {
+  transition: transform 0.3s ease;
+  font-size: 0.8rem; /* Adjusted for pixelated font */
+}
+
+.pixel-nav li:hover {
+  transform: scale(1.1);
+  color: #FF4500; /* Retro hover effect color */
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container img {
+  max-height: 50px; /* Adjust to fit the header's height */
+  width: auto;
+  margin-right: 20px;
+  image-rendering: pixelated; /* For pixel art logos */
+}
+
+.info-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.disconnect-btn, .connect-link {
+  color: #ffffff;
+  background-color: #ff4500;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 0; /* Square edges for pixelated effect */
+  text-transform: uppercase;
+  font-size: 0.8rem; /* Adjusted for pixelated font */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.disconnect-btn:hover, .connect-link:hover {
+  background-color: #000;
+  color: #ff4500;
+  border: 2px solid #ff4500; /* Border for hover effect */
+}
+
+@media (max-width: 768px) {
+  /* Responsive styles for mobile */
+  .pixel-nav ul {
+      flex-direction: column;
+      gap: 10px; /* Adjusted gap for mobile view */
+  }
+}

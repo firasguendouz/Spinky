@@ -1,10 +1,3 @@
-import type {
-  ExtensionLoginButtonPropsType,
-  WebWalletLoginButtonPropsType,
-  OperaWalletLoginButtonPropsType,
-  LedgerLoginButtonPropsType,
-  WalletConnectLoginButtonPropsType
-} from '@multiversx/sdk-dapp/UI';
 import {
   ExtensionLoginButton,
   LedgerLoginButton,
@@ -13,9 +6,17 @@ import {
   WebWalletLoginButton,
   XaliasLoginButton
 } from 'components/sdkDappComponents';
-import { nativeAuth } from 'config';
-import { RouteNamesEnum } from 'localConstants';
+import type {
+  ExtensionLoginButtonPropsType,
+  LedgerLoginButtonPropsType,
+  OperaWalletLoginButtonPropsType,
+  WalletConnectLoginButtonPropsType,
+  WebWalletLoginButtonPropsType
+} from '@multiversx/sdk-dapp/UI';
+
 import { AuthRedirectWrapper } from 'wrappers';
+import { RouteNamesEnum } from 'localConstants';
+import { nativeAuth } from 'config/config.testnet';
 
 type CommonPropsType =
   | OperaWalletLoginButtonPropsType

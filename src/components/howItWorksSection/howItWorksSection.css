@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.how-it-works-section {
+    padding: 80px 20%;
+    background-color: #0D0D0D; /* Dark retro background color */
+    text-align: center;
+    color: #FFFFFF; /* Light text for contrast */
+    font-family: 'Press Start 2P', cursive; /* Pixelated font */
+}
+
+.steps {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.step-item {
+    flex: 1;
+    background-color: #1A1A1A; /* Dark background for each step */
+    padding: 20px;
+    border: 3px solid #FF0000; /* Bold, retro-style border */
+    border-radius: 0; /* Square edges for pixelated effect */
+    box-shadow: 4px 4px 0 #000000; /* Sharp, retro-style shadow */
+}
+
+.icon {
+    /* Add specific styles for your icons or illustrations */
+    width: 60px; /* Adjust size as needed */
+    height: 60px;
+    margin: 0 auto;
+    background-color: #FFA500; /* Retro icon color */
+}
+
+h2 {
+    font-size: 1.5rem; /* Adjusted for pixelated font */
+    margin-bottom: 20px;
+    color: #FF0000; /* Bright retro color */
+}
+
+h3 {
+    font-size: 0.2rem; /* Adjusted for pixelated font */
+    margin-top: 10px;
+}
+
+/* Add additional styling as needed */

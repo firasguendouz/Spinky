@@ -1,10 +1,16 @@
+// Account.tsx
+
+import './Account.css'; // Import the CSS file
+
+import { useGetAccountInfo, useGetNetworkConfig } from 'hooks';
+
+import { FormatAmount } from 'components/sdkDappComponents';
 import { Label } from 'components/Label';
 import { OutputContainer } from 'components/OutputContainer';
-import { FormatAmount } from 'components/sdkDappComponents';
-import { useGetAccountInfo, useGetNetworkConfig } from 'hooks';
+import React from 'react';
 import { Username } from './components';
 
-export const Account = () => {
+export  const Account = () => {
   const { network } = useGetNetworkConfig();
   const { address, account } = useGetAccountInfo();
 
@@ -33,3 +39,5 @@ export const Account = () => {
     </OutputContainer>
   );
 };
+
+;

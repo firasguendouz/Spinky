@@ -1,0 +1,40 @@
+/* Layout.css */
+
+body {
+  margin: 0;
+  font-family: 'Press Start 2P', cursive; /* Pixel art font */
+  color: #FFFFFF; /* Light text for readability */
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
+  background-color: #000000;
+}
+
+.header, .footer {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 0.5rem 1rem;
+  text-align: center;
+  border: 2px solid #FF0000; /* Bright border for header and footer */
+  box-shadow: 5px 5px 0px #FF0000; /* Pixelated shadow */
+}
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem; /* Adjusted for pixelated font */
+  margin: 1rem;
+  position: relative;
+}
+
+.header, .main-content, .footer {
+  box-shadow: 5px 5px 0px #FF0000; /* Consistent pixelated shadow */
+}
+
+
+
+

@@ -1,17 +1,25 @@
-import type { PropsWithChildren } from 'react';
-import { useLocation } from 'react-router-dom';
+// components/Layout.jsx
+
+import './Layout.css'; // Import the CSS file
+
 import { AuthenticatedRoutesWrapper } from 'components/sdkDappComponents';
-import { RouteNamesEnum } from 'localConstants/routes';
-import { routes } from 'routes/routes';
 import { Footer } from './Footer';
 import { Header } from './Header';
+import type { PropsWithChildren } from 'react';
+import React from 'react';
+import { RouteNamesEnum } from 'localConstants/routes';
+import { routes } from 'routes/routes';
+import { useLocation } from 'react-router-dom';
 
 export const Layout = ({ children }: PropsWithChildren) => {
   const { search } = useLocation();
+
   return (
-    <div className='flex min-h-screen flex-col bg-slate-200'>
-      <Header />
-      <main className='flex flex-grow items-stretch justify-center p-6'>
+    <div className='flex-container  '>
+      <Header  />
+      <main className='main-content'>
+     
+
         <AuthenticatedRoutesWrapper
           routes={routes}
           unlockRoute={`${RouteNamesEnum.unlock}${search}`}
@@ -19,7 +27,8 @@ export const Layout = ({ children }: PropsWithChildren) => {
           {children}
         </AuthenticatedRoutesWrapper>
       </main>
-      <Footer />
+      <Footer  />
+      
     </div>
   );
 };

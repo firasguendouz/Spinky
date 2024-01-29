@@ -1,0 +1,56 @@
+/* Account.css */
+/* Pixel-themed styling for the Account component */
+
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.text-black {
+    color: #3a3a3a; /* A softer black for text that fits the pixel theme */
+}
+
+/* General styles for the container */
+.output-container {
+    background-color: #0a0a0a; /* Dark background for container */
+    border: 4px solid #ff4757; /* Red pixelated border */
+    padding: 16px; /* Padding inside the container */
+    box-shadow: 4px 4px 0 #ff4757; /* Pixel art style shadow */
+    image-rendering: pixelated; /* Crisp pixel edges */
+    color: #ffffff; /* Text color */
+}
+
+/* Specific styles for labels and values */
+.label {
+    font-family: 'Press Start 2P', cursive; /* Pixel art font */
+    color: #50bfe6; /* Bright color for label */
+    font-size: 12px; /* Smaller font size for pixelated look */
+    margin-right: 8px; /* Space after label */
+}
+
+.value {
+    font-family: 'Press Start 2P', cursive; /* Consistent font for values */
+    font-size: 12px; /* Matching font size for pixelated look */
+}
+
+/* Username specific styles if needed */
+.username {
+    font-family: 'Press Start 2P', cursive;
+    color: #ffbe0b; /* Different color to make username stand out */
+}
+
+/* Style tweaks for the FormatAmount component if needed */
+.format-amount {
+    font-family: 'Press Start 2P', cursive;
+    color: #ff006e; /* Eye-catching color for amounts */
+}
+
+/* Responsive and interactive styles */
+@media (hover: hover) {
+    .output-container:hover {
+        background-color: #121212; /* Slight change on hover for interactivity */
+        border-color: #ff6b6b; /* Brighter border on hover */
+        box-shadow: 6px 6px 0 #ff6b6b; /* Larger shadow on hover for effect */
+    }
+}

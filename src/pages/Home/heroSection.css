@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.hero-section {
+    width: 100%;
+    height: 500px; /* Adjust height based on your design preferences */
+    background-image: url('../../Assets/homepage.png'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    color: #fff; /* Text color on top of the image */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive; /* Pixelated font */
+}
+
+.hero-content {
+    max-width: 600px;
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: add semi-transparent overlay for readability */
+}
+
+h1 {
+    font-size: 1.5rem; /* Adjust size for pixelated font readability */
+    margin-bottom: 20px;
+    text-shadow: 2px 2px #000; /* Optional: add text shadow for depth */
+}
+
+p {
+    font-size: 0.8rem; /* Adjust size for pixelated font readability */
+    margin-bottom: 30px;
+    line-height: 1.5; /* Improve readability */
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 0.8rem; /* Adjust size for pixelated font readability */
+    background-color: #FF0000; /* Retro button color */
+    color: #fff;
+    border: 2px solid #000; /* Add border for pixelated effect */
+    border-radius: 0; /* Remove border-radius for a more blocky look */
+    cursor: pointer;
+    text-transform: uppercase; /* Optional: for stylistic choice */
+    box-shadow: 3px 3px 0 #000; /* Add shadow for depth */
+}
+
+button:hover {
+    background-color: #00FF00; /* Change color on hover for interaction feedback */
+}
+
+/* Add additional styling as needed */

@@ -1,7 +1,12 @@
-import type { PropsWithChildren, MouseEvent } from 'react';
+// Button.tsx
+
+import'./Button.css';
+
+import React, { MouseEvent } from 'react';
+
 import { WithClassnameType } from 'types';
 
-interface ButtonType extends WithClassnameType, PropsWithChildren {
+interface ButtonType extends React.PropsWithChildren<WithClassnameType> {
   onClick: (e: MouseEvent) => void;
   disabled?: boolean;
   dataTestId?: string;
@@ -16,7 +21,7 @@ export const Button = ({
   disabled = false,
   type = 'button',
   id,
-  className = 'inline-block rounded-lg px-3 py-2 text-center hover:no-underline my-0 bg-blue-600 text-white hover:bg-blue-700 mr-0 disabled:bg-gray-200 disabled:text-black disabled:cursor-not-allowed',
+  className = 'button',
   ...otherProps
 }: ButtonType) => {
   return (

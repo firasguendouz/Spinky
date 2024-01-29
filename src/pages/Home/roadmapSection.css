@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.roadmap-section {
+    padding: 80px 0;
+    background-color: #000; /* Retro-style background color */
+    text-align: center;
+    font-family: 'Press Start 2P', cursive; /* Pixelated font */
+    color: #fff; /* Text color for contrast */
+}
+
+.roadmap-timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.milestone-item {
+    position: relative;
+    text-align: left;
+    padding: 20px;
+    border: 3px solid #FF0000; /* Bold, pixel-art style border */
+    border-radius: 0; /* Square edges for pixelated effect */
+    box-shadow: 4px 4px 0 #000000; /* Sharp, retro-style shadow */
+    width: 60%;
+    margin-bottom: 20px;
+    background-color: #1A1A1A; /* Dark background for each item */
+}
+
+.timeline-dot {
+    position: absolute;
+    top: 50%;
+    left: -30px; /* Adjust as needed to position outside the milestone item */
+    transform: translate(-50%, -50%);
+    width: 30px; /* Adjust based on icon size */
+    height: 30px;
+    background-image: url('../../Assets/ember-image.png'); /* Path to your icon */
+    background-size: cover;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+
+.date {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 0.8rem; /* Adjusted for pixelated font */
+}
+
+.event {
+    font-size: 0.8rem; /* Adjusted for pixelated font */
+    margin-bottom: 10px;
+    line-height: 1.5; /* To improve readability */
+}
+
+@media (max-width: 768px) {
+    .milestone-item {
+      width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    .milestone-item {
+      width: 100%;
+    }
+}
+
+/* Add additional styling as needed */

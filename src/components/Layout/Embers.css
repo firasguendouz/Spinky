@@ -1,0 +1,19 @@
+/* Embers.css */
+
+.embers {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px; /* Adjust the height of the embers area */
+    background: url('ember-image.png') repeat-x; /* Replace 'ember-image.png' with your ember image */
+    animation: embers-rising 5s linear infinite;
+}
+
+@keyframes embers-rising {
+    from {
+        background-position-y: 100%;
+    }
+    to {
+        background-position-y: 0;
+    }
+}

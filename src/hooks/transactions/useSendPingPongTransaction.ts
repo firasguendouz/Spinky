@@ -1,16 +1,17 @@
-import { useState } from 'react';
 import {
   deleteTransactionToast,
   removeAllSignedTransactions,
   removeAllTransactionsToSign
 } from '@multiversx/sdk-dapp/services/transactions/clearTransactions';
-import { contractAddress } from 'config';
 import { refreshAccount, sendTransactions } from 'helpers';
-import { useTrackTransactionStatus } from 'hooks/sdkDappHooks';
-import { SessionEnum } from 'localConstants';
+
 import { IPlainTransactionObject } from 'types/sdkCoreTypes';
+import { SessionEnum } from 'localConstants';
+import { contractAddress } from 'config/config.testnet';
 import { getChainId } from 'utils/getChainId';
 import { smartContract } from 'utils/smartContract';
+import { useState } from 'react';
+import { useTrackTransactionStatus } from 'hooks/sdkDappHooks';
 
 export const useSendPingPongTransaction = (type: SessionEnum) => {
   // Needed in order to differentiate widgets between each other

@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.main-container {
+    background-size: cover;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Press Start 2P', cursive; /* Pixelated font */
+}
+
+.castle-div {
+    width: 100%;
+    overflow: hidden; /* To ensure the image fits well */
+}
+
+.castle-image {
+    width: 100%;
+    height: 200px; /* Adjust as needed */
+    image-rendering: pixelated; /* To maintain the pixel art quality */
+}
+
+.lava-div {
+    width: 100%;
+    height: 100px; /* Adjust as needed */
+    background-color: #FF4500; /* Melting lava color, can use a pixel art pattern */
+}
+
+.welcome-text {
+    font-family: 'Press Start 2P', cursive; /* Pixelated font */
+    font-size: 1rem; /* Adjusted for pixelated font */
+    color: #ffffff;
+    justify-content: center;
+    display: flex;
+}
+
+.icon-banner {
+    display: flex;
+    background-color: #ffffff; /* White background for contrast */
+    border-radius: 0; /* Square edges for pixelated effect */
+    margin-top: 10px;
+}
+
+.icon {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    border-right: 2px solid #000000; /* Bold border for pixelated effect */
+}
+
+.icon:last-child {
+    border-right: none; /* Remove border for the last icon */
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-container {
+        margin: 10px;
+    }
+
+    .castle-div, .castle-image, .lava-div {
+        width: 100%; /* Full width for smaller screens */
+    }
+
+    .castle-image {
+        height: 150px; /* Smaller height for smaller screens */
+    }
+
+    .lava-div {
+        height: 50px; /* Smaller height for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .icon-banner {
+        flex-direction: column; /* Stack icons vertically on very small screens */
+    }
+
+    .icon {
+        padding: 10px; /* Reduce padding */
+        border-right: none; /* Remove border */
+        border-bottom: 2px solid #000000; /* Add bottom border */
+    }
+
+    .icon:last-child {
+        border-bottom: none; /* Remove bottom border for the last icon */
+    }
+    
+    .welcome-text {
+        font-size: 0.75rem; /* Smaller font size for very small screens */
+    }
+}

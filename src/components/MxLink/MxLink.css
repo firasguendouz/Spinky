@@ -1,0 +1,27 @@
+/* MxLink.css */
+.mx-link {
+  text-decoration: none;
+  color: #ffffff; /* A fiery shade for the hellish theme */
+  font-family: 'Press Start 2P', cursive; /* A common pixel art font */
+  font-size: 0.75rem; /* Adjusted for pixel art font visibility */
+  padding: 10px;
+  display: inline-block;
+  background-color: transparent;
+  position: relative;
+  text-align: center;
+  border: 2px solid transparent; /* Border to maintain the size on hover */
+  box-shadow: 4px 4px 0 #ff4500; /* Pixelated shadow for depth */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mx-link:hover, .mx-link:focus {
+  color: #ffffff;
+  background-color: #ff4500;
+  border-radius: 0; /* Sharp corners for a pixelated look */
+  box-shadow: 4px 4px 0 #c0392b; /* Shadow color change on hover */
+}
+
+.mx-link:active {
+  transform: translateY(1px);
+  box-shadow: 2px 2px 0 #c0392b; /* Reduced shadow size on active */
+}
