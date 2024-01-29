@@ -11,8 +11,8 @@ const AttributesPanel: React.FC<AttributesPanelProps> = ({ category, onOptionCha
   // Define lengths for each category
   const categoryLengths: Record<string, number> = {
     skin: 3,
-    eyes: 11,
-    mouth: 11,
+    eyes: 2,
+    mouth: 4,
     hat: 25,
     beard: 6,
     glasses: 13,

@@ -45,7 +45,13 @@ export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
     // Update canvas background with the selected color
     updateCanvasBackground(backgroundColor);
   }, [selectedOptions, generator, backgroundColor]);
-
+  function setSelectedColor(color: string) {
+    if (generator) {
+      generator.selectedColor = color;
+      // Trigger the buildDemon function to update the canvas background color
+      generator.buildDemon();
+    }
+  }
   const updateJsonStructure = () => {
     const avatarData = {
       skin: selectedOptions.skin,
@@ -93,6 +99,8 @@ export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
   const handleBackgroundColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const color = e.target.value;
     setBackgroundColor(color);
+    setSelectedColor(color); // Update the selected color in AvatarMaker
+
   };
 
   const handleCategoryChange = (category: string) => {
