@@ -1,4 +1,4 @@
-import './CategoriesMenu.css';
+// CategoriesMenu.tsx
 
 import React, { useState } from 'react';
 
@@ -14,8 +14,8 @@ const CategoriesMenu: React.FC<CategoriesMenuProps> = ({ onCategoryChange, onOpt
   const [selectedOption, setSelectedOption] = useState<string>('1'); // Default option
 
   const handleCategoryClick = (category: string) => {
-    setSelectedCategory(category === selectedCategory ? null : category);
-    onCategoryChange(category); // Notify the Generator component about the category change
+    setSelectedCategory(category === selectedCategory ? null : category.toLowerCase());
+    onCategoryChange(category.toLowerCase()); // Notify the Generator component about the category change
   };
 
   const handleOptionChange = (option: string) => {
@@ -25,21 +25,21 @@ const CategoriesMenu: React.FC<CategoriesMenuProps> = ({ onCategoryChange, onOpt
 
   return (
     <div className="CategoriesMenu">
-    <div>
-      <button onClick={() => handleCategoryClick('skin')}>Skin</button>
-      <button onClick={() => handleCategoryClick('eyes')}>Eyes</button>
-      <button onClick={() => handleCategoryClick('mouth')}>Mouth</button>
-      <button onClick={() => handleCategoryClick('beard')}>Beard</button>
-      <button onClick={() => handleCategoryClick('hat')}>Hat</button>
-      <button onClick={() => handleCategoryClick('glasses')}>Glasses</button>
+      <div  >
+        <button onClick={() => handleCategoryClick('skin')}>Skin</button>
+        <button onClick={() => handleCategoryClick('eyes')}>Eyes</button>
+        <button onClick={() => handleCategoryClick('mouth')}>Mouth</button>
+        <button onClick={() => handleCategoryClick('beard')}>Beard</button>
+        <button onClick={() => handleCategoryClick('hat')}>Hat</button>
+        <button onClick={() => handleCategoryClick('glasses')}>Glasses</button>
+      </div>
+      {selectedCategory && (
+        <AttributesPanel
+          category={selectedCategory}
+          onOptionChange={handleOptionChange}
+        />
+      )}
     </div>
-    {selectedCategory && (
-      <AttributesPanel
-        category={selectedCategory}
-        onOptionChange={handleOptionChange}
-      />
-    )}
-  </div>
   );
 };
 
