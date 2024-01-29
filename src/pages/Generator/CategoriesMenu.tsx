@@ -11,7 +11,6 @@ interface CategoriesMenuProps {
 
 const CategoriesMenu: React.FC<CategoriesMenuProps> = ({ onCategoryChange, onOptionChange }) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedOption, setSelectedOption] = useState<string>('1'); // Default option
 
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(category === selectedCategory ? null : category);
@@ -19,7 +18,6 @@ const CategoriesMenu: React.FC<CategoriesMenuProps> = ({ onCategoryChange, onOpt
   };
 
   const handleOptionChange = (option: string) => {
-    setSelectedOption(option);
     onOptionChange(option); // Notify the Generator component about the option change
   };
 
@@ -36,7 +34,6 @@ const CategoriesMenu: React.FC<CategoriesMenuProps> = ({ onCategoryChange, onOpt
     {selectedCategory && (
       <AttributesPanel
         category={selectedCategory}
-        selectedOption={selectedOption}
         onOptionChange={handleOptionChange}
       />
     )}

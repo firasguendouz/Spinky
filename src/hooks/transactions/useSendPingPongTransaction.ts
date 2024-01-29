@@ -3,12 +3,12 @@ import {
   removeAllSignedTransactions,
   removeAllTransactionsToSign
 } from '@multiversx/sdk-dapp/services/transactions/clearTransactions';
-import { refreshAccount, sendTransactions } from 'helpers';
 
 import { IPlainTransactionObject } from 'types/sdkCoreTypes';
 import { SessionEnum } from 'localConstants';
 import { contractAddress } from 'config/config.testnet';
 import { getChainId } from 'utils/getChainId';
+import { refreshAccount } from 'helpers';
 import { smartContract } from 'utils/smartContract';
 import { useState } from 'react';
 import { useTrackTransactionStatus } from 'hooks/sdkDappHooks';

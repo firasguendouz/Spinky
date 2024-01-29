@@ -5,7 +5,7 @@ function setSelectedColor(color: string) {
 }
 
 /* eslint-disable class-methods-use-this */
-const root = '/assets/images/pieces/';
+const root = '/assets/images/pieces';
 
 export default class AvatarMaker {
   public skin!: HTMLImageElement;
@@ -14,10 +14,10 @@ export default class AvatarMaker {
   public beard!: HTMLImageElement;
   public hat!: HTMLImageElement;
   public glasses!: HTMLImageElement;
-  backgroundColor: string;
-  selectedColor: string; // Add selectedColor property
-
+  selectedColor!: string; 
+  
   constructor() {
+
     if (typeof document !== 'undefined') {
       this.skin = document.createElement('img');
       this.skin.src = `${root}/skin/Skin${1}.png`;
@@ -36,14 +36,14 @@ export default class AvatarMaker {
 
       this.glasses = document.createElement('img');
       this.glasses.src = `${root}/glasses/Glasses${1}.png`;
-
-      this.backgroundColor = '#FFFFFF'; // Set a default background color
-      this.selectedColor = this.backgroundColor; // Initialize selectedColor with the default background color
+      
+      this.selectedColor = 'white'; 
 
       this.buildDemon();
+  
     }
   }
-
+  
   changeSkin(id: string) {
     this.skin.src = `${root}/skin/Skin${id}.png`;
     this.skin.onload = this.imageLoaded.bind(this);
@@ -74,9 +74,7 @@ export default class AvatarMaker {
     this.glasses.onload = this.imageLoaded.bind(this);
   }
 
-  private imageLoaded() {
-    this.buildDemon();
-  }
+
 
   private imageLoaded() {
     console.log('All images loaded. Building demon...');
@@ -112,8 +110,8 @@ export default class AvatarMaker {
   
         context.clearRect(0, 0, canvas.width, canvas.height);
   
-        // Use the selected color from the state instead of generating a random one
-        context.fillStyle = this.selectedColor; // Use selectedColor instead of backgroundColor
+        // Use the selected color instead of backgroundColor
+        context.fillStyle = this.selectedColor;
         context.fillRect(0, 0, height, width);
   
         // Draw the avatar parts on top of the background

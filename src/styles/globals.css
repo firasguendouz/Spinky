@@ -1,25 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer utilities {
-  .group:hover .group-hover\:block {
-    display: block;
-    text-decoration: underline;
-  }
+/* Apply a pixelated font for the pixel art theme */
+body {
+  font-family: 'Press Start 2P', cursive;
+  background-color: #2b2b2b; /* Dark background for contrast */
 }
 
+/* Apply pixel art styling to tables and links */
 .mx-transactions > td {
-  @apply p-2;
+  padding: 8px; /* Adjust padding for pixelated look */
 }
 
 .mx-transactions td > span,
 .mx-transactions td > div {
-  @apply flex w-max;
+  display: flex;
+  justify-content: flex-start; /* Adjust alignment as needed */
+  align-items: center; /* Align content vertically */
 }
 
+/* Apply pixel art style to links */
 .mx-transactions td > div > a {
-  @apply text-blue-600;
+  color: #3498db; /* Bright link color */
+  text-decoration: none;
+  border-bottom: 1px dotted #3498db; /* Pixelated dotted line decoration */
+  transition: color 0.3s, border-color 0.3s; /* Smooth transition on hover */
+}
+
+.mx-transactions td > div > a:hover {
+  color: #2980b9; /* Darker blue on hover */
+  border-bottom-color: #2980b9; /* Darker line color on hover */
 }

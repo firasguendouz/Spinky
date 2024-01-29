@@ -1,22 +1,31 @@
-// AttributesPanel.tsx
-
-import './AttributesPanel.css'; // Import the updated CSS for styles
+import './AttributesPanel.css';
 
 import React, { useEffect, useState } from 'react';
 
 interface AttributesPanelProps {
   category: string;
-  onOptionChange: (option: string) => void; // Add a callback prop to notify the parent component about the option change
+  onOptionChange: (option: string) => void;
 }
 
 const AttributesPanel: React.FC<AttributesPanelProps> = ({ category, onOptionChange }) => {
+  // Define lengths for each category
+  const categoryLengths: Record<string, number> = {
+    skin: 3,
+    eyes: 11,
+    mouth: 11,
+    hat: 25,
+    beard: 6,
+    glasses: 13,
+  };
+
   const [categoryImages, setCategoryImages] = useState<string[]>([]);
 
   useEffect(() => {
     const importCategoryImages = async () => {
-      // Dynamically import all images for the specified category
       const images = await Promise.all(
-        Array.from({ length: 16 }, (_, index) => import(`../../assets/pieces/${category}/${category}${index + 1}.png`))
+        Array.from({ length: categoryLengths[category] }, (_, index) =>
+          import(`../../assets/pieces/${category}/${category}${index + 1}.png`)
+        )
       );
       setCategoryImages(images);
     };
@@ -25,9 +34,8 @@ const AttributesPanel: React.FC<AttributesPanelProps> = ({ category, onOptionCha
   }, [category]);
 
   const handleImageClick = (index: number) => {
-    const selectedOption = `${index + 1}`; // Assuming options are indexed from 1
-    onOptionChange(selectedOption); // Notify the parent component about the option change
-
+    const selectedOption = `${index + 1}`;
+    onOptionChange(selectedOption);
     console.log(`Selected ${category} image index: ${index}`);
   };
 

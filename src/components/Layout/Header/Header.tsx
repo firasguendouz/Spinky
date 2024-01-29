@@ -26,7 +26,7 @@ const Logo: React.FC<LogoProps> = ({ isLoggedIn, isMobile }) => (
     to={isLoggedIn ? RouteNamesEnum.dashboard : isMobile ? RouteNamesEnum.aboutus : RouteNamesEnum.home}
   >
       <img
-        src="/src/assets/SpinkyBloodyLogo.png"
+        src="/src/assets/Logo.png"
         alt="logo"
       />
     

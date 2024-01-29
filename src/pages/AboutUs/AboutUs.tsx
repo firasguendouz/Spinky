@@ -21,7 +21,7 @@ export   const AboutUs = () => {
         <div className='top-section'>
           {/* Logo */}
           <div className='logo-container'>
-            <img src="src/assets/SpinkyBloodyLogo.png" alt="Logo" className="logo" />
+            <img src="src/assets/untitled.png " alt="Logo" className="logo" />
           </div>
 
           {/* Title and Subtitle */}

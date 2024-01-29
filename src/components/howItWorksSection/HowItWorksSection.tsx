@@ -12,20 +12,21 @@ export const HowItWorksSection = () => {
   ];
 
   return (
-    <section className="how-it-works-section">
-      <h2>How It Works</h2>
-      <div className="steps">
-        {steps.map((step) => (
-          <div key={step.id} className="step-item">
-            <div className="icon">
-              <img src={step.image} alt={step.title} />
-            </div>
-            <h3>{step.title}</h3>
-          </div>
-        ))}
-      </div>
-    </section>
+    <section className= "how-it-works-section" >
+    <h2>How It Works < /h2>
+      < div className = "steps" >
+      {
+        steps.map((step) => (
+          <div key= { step.id } className = "step-item" >
+          <div className="icon" >
+        <img src={ step.image } alt = { step.title } />
+        </div>
+        < h3 > { step.title } < /h3>
+        < /div>
+        ))
+      }
+        < /div>
+        < /section>
   );
 };
-
 ;

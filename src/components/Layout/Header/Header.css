@@ -36,8 +36,8 @@
 }
 
 .logo-container img {
-  max-height: 50px; /* Adjust to fit the header's height */
-  width: auto;
+  max-height: auto; /* Adjust to fit the header's height */
+  width: 120px;
   margin-right: 20px;
   image-rendering: pixelated; /* For pixel art logos */
 }

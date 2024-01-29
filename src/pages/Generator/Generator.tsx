@@ -24,7 +24,7 @@ export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
     mouth: '1',
     hat: '10',
     beard: '5',
-    glasses: '13',
+    glasses: '12',
   });
   const [jsonStructure, setJsonStructure] = useState<string>('');
   const [backgroundColor, setBackgroundColor] = useState<string>('grey');
@@ -80,7 +80,7 @@ export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
         if (selectedCategory && categoryImages[selectedCategory]) {
           const selectedImage = categoryImages[selectedCategory][selectedOptions[selectedCategory] - 1];
           const img = new Image();
-          img.src = selectedImage.default;
+          img.src = selectedImage?.default;
 
           img.onload = () => {
             context.drawImage(img, (width - img.width) / 2, 0);
