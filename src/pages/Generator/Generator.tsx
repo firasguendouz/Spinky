@@ -45,6 +45,7 @@ export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
     // Update canvas background with the selected color
     updateCanvasBackground(backgroundColor);
   }, [selectedOptions, generator, backgroundColor]);
+
   function setSelectedColor(color: string) {
     if (generator) {
       generator.selectedColor = color;
@@ -52,6 +53,7 @@ export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
       generator.buildDemon();
     }
   }
+
   const updateJsonStructure = () => {
     const avatarData = {
       skin: selectedOptions.skin,
@@ -100,7 +102,6 @@ export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
     const color = e.target.value;
     setBackgroundColor(color);
     setSelectedColor(color); // Update the selected color in AvatarMaker
-
   };
 
   const handleCategoryChange = (category: string) => {
@@ -114,32 +115,82 @@ export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
     }));
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     // Get the canvas data URL
     const canvasDataUrl = canvasRef.current?.toDataURL('image/png');
-
+  
     if (canvasDataUrl) {
+      // Make a request to your server
+      try {
+        const response = await fetch('http://localhost:3001/upload-avatar', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ canvasDataUrl }),
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          const cid = data.cid;
+          console.log('Uploaded Image CID:', cid);
+  
+          // Handle the uploaded image CID, you can use it as needed
+          handleImageUploaded(cid);
+        } else {
+          console.error('Failed to upload image to server.');
+        }
+      } catch (error) {
+        console.error('Error uploading image to server:', error);
+      }
+    } else {
+      // Handle the case where the canvas is not available or data URL is not generated
+      alert('Error saving the avatar. Please try again.');
+    }
+  
+  
+
       // Create a temporary link element
-      const downloadLink = document.createElement('a');
+     /* const downloadLink = document.createElement('a');
       downloadLink.href = canvasDataUrl;
-      downloadLink.download = 'avatar.png';
+      downloadLink.download = 'avatar.png';*/
 
       // Trigger a click event to download the image
-      document.body.appendChild(downloadLink);
+      /*document.body.appendChild(downloadLink);
       downloadLink.click();
-      document.body.removeChild(downloadLink);
+      document.body.removeChild(downloadLink);*/
 
       // Provide feedback to the user
-      alert(
+      /*alert(
         ' Warning: A mischievous Spinky Demon is about to descend upon your local Storage! 🚀\n\n' +
-        "Remember,If you're not the Master of This Demon, consider obtaining permission.\n\n" +
+        "Remember, If you're not the Master of This Demon, consider obtaining permission.\n\n" +
         'even demonz appreciate a bit of respect for intellectual property. 📜'
       );
     } else {
       // Handle the case where the canvas is not available or data URL is not generated
       alert('Error saving the avatar. Please try again.');
+    }*/
+  };
+
+  const handleImageUploaded = async (cid: string) => {
+    // Handle the uploaded image CID, you can use it as needed
+    console.log('Uploaded Image CID:', cid);
+  
+    // Now, you can use the CID to interact with the uploaded image on NFT.storage or your preferred storage solution.
+    try {
+      const response = await fetch(`https://dweb.link/ipfs/${cid}`);
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Image Metadata:', data);
+        // You can handle the metadata or perform additional actions here.
+      } else {
+        console.error('Failed to fetch image metadata.');
+      }
+    } catch (error) {
+      console.error('Error fetching image metadata:', error);
     }
   };
+  
 
   return (
     <div className="generator-container">
@@ -162,13 +213,17 @@ export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
           value={backgroundColor}
           onChange={handleBackgroundColorChange}
         />
+
+        {/* IPFSUploader component */}
+
         <div className="button-container">
           <Button onClick={handleSave}>Save</Button>
         </div>
         <div className="button-container">
-          {isLoggedIn && <Button onClick={function (e: React.MouseEvent<Element, MouseEvent>): void {
-            throw new Error('Function not implemented.');
-          } } >Mint</Button>}
+          {isLoggedIn && <Button onClick={(e) => {
+            // Add your Mint functionality here
+            console.log('Mint button clicked');
+          }}>Mint</Button>}
         </div>
       </div>
     </div>
