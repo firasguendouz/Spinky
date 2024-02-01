@@ -133,8 +133,8 @@ export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
         if (response.ok) {
           const data = await response.json();
           const cid = data.cid;
-          console.log('Uploaded Image CID:', cid);
-  
+         
+
           // Handle the uploaded image CID, you can use it as needed
           handleImageUploaded(cid);
         } else {
@@ -200,6 +200,52 @@ const handleSave = async () => {
   const canvasDataUrl = canvasRef.current?.toDataURL('image/png');
 
   if (canvasDataUrl) {
+    // Create image metadata
+    const imageMetadata = {
+      title: 'Spinky Demonz Club',
+      author: 'Guen12003',
+      uploadDate: new Date().toISOString(),
+      attributes: [
+        {
+          trait_type: 'Name of the NFT',
+          value: 'Value',
+        },
+        {
+          trait_type: 'Background',
+          value: 'Value',
+        },
+        {
+          trait_type: 'Skin',
+          value: selectedOptions.skin,
+        },
+        {
+          trait_type: 'Eyes',
+          value: selectedOptions.eyes,
+        },
+        {
+          trait_type: 'Mouth',
+          value: selectedOptions.mouth,
+        },
+        {
+          trait_type: 'Hat',
+          value: selectedOptions.hat,
+        },
+        {
+          trait_type: 'Beard',
+          value: selectedOptions.beard,
+        },
+        {
+          trait_type: 'Glasses',
+          value: selectedOptions.glasses,
+        },
+        {
+          trait_type: 'Level',
+          display_type: 'number',
+          value: 0,
+        },
+      ],
+    };
+
     // Make a request to your server
     try {
       const response = await fetch('http://localhost:3001/upload-avatar', {
@@ -207,7 +253,7 @@ const handleSave = async () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ canvasDataUrl }),
+        body: JSON.stringify({ canvasDataUrl, metadata: imageMetadata }), // Include metadata in the request body
       });
 
       if (response.ok) {
@@ -229,7 +275,6 @@ const handleSave = async () => {
   }
 };
 
-// ... (Remaining code)
 
     
   
