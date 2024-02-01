@@ -138,7 +138,7 @@ export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
           // Handle the uploaded image CID, you can use it as needed
           handleImageUploaded(cid);
         } else {
-          console.error('Failed to upload image to server.');
+          console.error('Failed to upload image to server:', response.statusText);
         }
       } catch (error) {
         console.error('Error uploading image to server:', error);
@@ -147,6 +147,8 @@ export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
       // Handle the case where the canvas is not available or data URL is not generated
       alert('Error saving the avatar. Please try again.');
     }
+  };
+  
   
   
 
@@ -170,7 +172,7 @@ export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
       // Handle the case where the canvas is not available or data URL is not generated
       alert('Error saving the avatar. Please try again.');
     }*/
-  };
+  
 
   const handleImageUploaded = async (cid: string) => {
     // Handle the uploaded image CID, you can use it as needed
