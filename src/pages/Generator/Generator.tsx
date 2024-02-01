@@ -245,7 +245,7 @@ const handleSave = async () => {
         },
       ],
     };
-
+ console.log(imageMetadata);
     // Make a request to your server
     try {
       const response = await fetch('http://localhost:3001/upload-avatar', {
