@@ -41,7 +41,7 @@ const NavigationLinks: React.FC<NavigationLinksProps> = ({ isLoggedIn }) => (
   <Toolbar className='pixel-nav'> {/* Apply toolbar styles from CSS */}
      <ul>
      <li><MxLink to={RouteNamesEnum.home}>Home</MxLink></li>
-     <li><MxLink to={RouteNamesEnum.aboutus}>About</MxLink></li>
+     <li><MxLink to={RouteNamesEnum.aboutus}>Team</MxLink></li>
     {isLoggedIn && <MxLink to={RouteNamesEnum.generator}>Avatar Maker</MxLink>}
     </ul>
     </Toolbar>

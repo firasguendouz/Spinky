@@ -5,9 +5,9 @@ import React from 'react';
 export const HowItWorksSection = () => {
   const steps = [
     { id: 1, title: 'Create Your Unique Spinky Demon', image: '../../assets/Create.png' },
+    { id: 4, title: 'Buy Land Piece', image: '../../assets/icon-browse.png' },
     { id: 2, title: 'Stake Your NFT', image: '../../assets/stake.png' },
     { id: 3, title: 'Claim $Ash Token', image: '../../assets/icon-purchase.png' },
-    { id: 4, title: 'Buy Land Piece', image: '../../assets/icon-browse.png' },
     { id: 5, title: 'Start Playing Game', image: '../../assets/icon-browse.png' },
   ];
 

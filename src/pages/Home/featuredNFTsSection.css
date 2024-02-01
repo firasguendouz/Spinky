@@ -14,6 +14,8 @@
 }
 
 .nft-item {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
     position: relative;
     overflow: hidden;
     border: 4px solid #FF0000; /* Bold border for a pixelated look */
@@ -37,9 +39,12 @@
     position: absolute;
     top: 0;
     left: 0;
+    transition: opacity 0.3s ease-in-out;
+
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Slightly darker overlay */
+    mix-blend-mode: overlay; /* Blend mode for a unique overlay effect */
+    background: linear-gradient(to bottom, rgba(205, 3, 3, 0.5) 0%, rgba(0, 0, 0, 0) 100%); /* Gradient overlay */
     display: flex;
     flex-direction: column;
     justify-content: center;
