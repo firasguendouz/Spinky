@@ -115,7 +115,7 @@ export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
     }));
   };
 
-  const handleSave = async () => {
+  const handleSaveOrigin = async () => {
     // Get the canvas data URL
     const canvasDataUrl = canvasRef.current?.toDataURL('image/png');
   
@@ -174,24 +174,64 @@ export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
     }*/
   
 
-  const handleImageUploaded = async (cid: string) => {
-    // Handle the uploaded image CID, you can use it as needed
-    console.log('Uploaded Image CID:', cid);
-  
-    // Now, you can use the CID to interact with the uploaded image on NFT.storage or your preferred storage solution.
-    try {
-      const response = await fetch(`https://dweb.link/ipfs/${cid}`);
-      if (response.ok) {
+    // ... (Previous code)
+
+const handleImageUploaded = async (cid: string) => {
+  try {
+    const response = await fetch(`https://dweb.link/ipfs/${cid}`);
+    if (response.ok) {
+      try {
         const data = await response.json();
         console.log('Image Metadata:', data);
         // You can handle the metadata or perform additional actions here.
+      } catch (error) {
+        console.error('Error parsing JSON:', error);
+      }
+    } else {
+      console.error('Failed to fetch image metadata:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Error fetching image metadata:', error);
+  }
+};
+
+const handleSave = async () => {
+  // Get the canvas data URL
+  const canvasDataUrl = canvasRef.current?.toDataURL('image/png');
+
+  if (canvasDataUrl) {
+    // Make a request to your server
+    try {
+      const response = await fetch('http://localhost:3001/upload-avatar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ canvasDataUrl }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const cid = data.cid;
+        console.log('Uploaded Image CID:', cid);
+
+        // Handle the uploaded image CID, you can use it as needed
+        handleImageUploaded(cid);
       } else {
-        console.error('Failed to fetch image metadata.');
+        console.error('Failed to upload image to server:', response.statusText);
       }
     } catch (error) {
-      console.error('Error fetching image metadata:', error);
+      console.error('Error uploading image to server:', error);
     }
-  };
+  } else {
+    // Handle the case where the canvas is not available or data URL is not generated
+    alert('Error saving the avatar. Please try again.');
+  }
+};
+
+// ... (Remaining code)
+
+    
   
 
   return (
