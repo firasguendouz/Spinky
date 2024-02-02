@@ -35,7 +35,8 @@ app.post('/upload-avatar', async (req, res) => {
       const data = await response.json();
       const cid = data.value.cid;
       console.log('Uploaded Image CID:', cid);
-      res.status(200).json({ cid });
+      console.log(`https://nftstorage.link/ipfs/${cid}`);
+      console.log(`https://${cid}.ipfs.dweb.link`);      res.status(200).json({ cid });
     } else {
       console.error('Failed to upload image to NFT.Storage.');
       res.status(500).json({ error: 'Internal server error' });

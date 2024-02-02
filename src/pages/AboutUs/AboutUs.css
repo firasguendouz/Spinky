@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 .about-us-container {
-    display: flex;
-    flex-direction: column;
+    flex-direction: grid;
     align-items: center;
     justify-content: center;
     width: 100%;

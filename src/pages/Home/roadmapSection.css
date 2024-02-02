@@ -35,12 +35,26 @@
     transform: translate(-50%, -50%);
     width: 30px; /* Adjust based on icon size */
     height: 30px;
-    background-image: url('../../Assets/ember-image.png'); /* Path to your icon */
     background-size: cover;
     border-radius: 50%;
     z-index: 1;
 }
-
+/* Add specific styles for each milestone */
+.timeline-dot.q1 {
+    background-image: url('../../assets/CreationIcon.png');
+  }
+  
+  .timeline-dot.q2 {
+    background-image: url('../../assets/LandIcon.png');
+  }
+  
+  .timeline-dot.q3 {
+    background-image: url('../../assets/GamingIcon.png');
+  }
+  
+  .timeline-dot.q4 {
+    background-image: url('../../assets/InnovationsIcon.png');
+  }
 
 .date {
     font-weight: bold;

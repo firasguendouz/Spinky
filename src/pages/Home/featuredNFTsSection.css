@@ -1,3 +1,5 @@
+/* featuredNFTsSection.css */
+
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 .featured-nfts-section {
@@ -11,12 +13,17 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    border: 2px solid #FF4500; /* Bright border for header and footer */
+    box-shadow: 5px 5px 0px #FF4500; /* Pixelated shadow */
 }
 
 .nft-item {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     position: relative;
     overflow: hidden;
-    border: 4px solid #FF0000; /* Bold border for a pixelated look */
+    border: 4px solid #FF4500; /* Bold border for a pixelated look */
     border-radius: 0; /* Square edges */
     box-shadow: 4px 4px 0 #000000; /* Sharp shadow for depth */
 }
@@ -37,15 +44,14 @@
     position: absolute;
     top: 0;
     left: 0;
+    transition: opacity 0.3s ease-in-out;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Slightly darker overlay */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
 }
 
 .nft-item:hover .overlay {
@@ -53,9 +59,31 @@
 }
 
 h3 {
-    font-size: 0.8rem; /* Adjust for pixelated font */
+    font-size: 0.9rem; /* Adjust for pixelated font */
     text-transform: uppercase; /* Stylistic choice for retro feel */
-    margin-bottom: 10px;
+    margin: 20px;
+    background-color: #fff;
+    color: #d60b0b; /* Text color for overlay */
+}
+
+.overlay p {
+    font-size: 0.7rem; /* Adjust font size for description */
+    margin-bottom: 5px;
+    background-color: #000000;
+    color: #d60b0b; /* Text color for overlay */
+}
+
+.overlay a {
+    color: #000dfd; /* Link color for Twitter */
+    text-decoration: none;
+    background-color: #000000;
+
+    font-weight: bold;
+    font-size: 0.7rem; /* Adjust font size for Twitter link */
+}
+
+.overlay a:hover {
+    text-decoration: underline;
 }
 
 /* Add additional styling as needed */
