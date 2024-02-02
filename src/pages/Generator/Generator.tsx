@@ -66,6 +66,7 @@ export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
       beard: selectedOptions.beard,
       glasses: selectedOptions.glasses,
       name: avatarName,
+      backgroundColor:  backgroundColor,
 
     };
 
