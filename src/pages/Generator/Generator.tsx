@@ -1,25 +1,22 @@
 // Import statements
 
-import './Generator.css'
-
 import React, { useEffect, useRef, useState } from 'react';
 
 import AvatarMaker from './AvatarMaker';
-import { Button } from 'components';
+import { Button } from 'components'; // Adjust the path based on the actual location
 import CategoriesMenu from './CategoriesMenu'; // Adjust the path based on the actual location
 import MetadataDisplay from './MetadataDisplay'; // Import the new MetadataDisplay component
+import { NFTStorage } from 'nft.storage';
 import categoryImages from './categoryImages'; // Update the path
 
 // Interface for props
 interface GeneratorProps {
   isLoggedIn: boolean;
-  isMobile: boolean;
 }
 
 // Component definition
 export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
-  const [avatarName, setAvatarName] = useState<string>(''); // Step 1: State variable for avatar name
-
+  const [avatarName, setAvatarName] = useState<string>('');
   const [generator] = useState(() => new AvatarMaker());
   const [selectedOptions, setSelectedOptions] = useState({
     skin: '2',
@@ -49,14 +46,6 @@ export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
     updateCanvasBackground(backgroundColor);
   }, [selectedOptions, generator, backgroundColor]);
 
-  function setSelectedColor(color: string) {
-    if (generator) {
-      generator.selectedColor = color;
-      // Trigger the buildDemon function to update the canvas background color
-      generator.buildDemon();
-    }
-  }
-
   const updateJsonStructure = () => {
     const avatarData = {
       skin: selectedOptions.skin,
@@ -66,8 +55,7 @@ export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
       beard: selectedOptions.beard,
       glasses: selectedOptions.glasses,
       name: avatarName,
-      backgroundColor:  backgroundColor,
-
+      backgroundColor: backgroundColor,
     };
 
     setJsonStructure(JSON.stringify(avatarData, null, 2));
@@ -121,67 +109,6 @@ export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
     }));
   };
 
-  const handleSaveOrigin = async () => {
-    // Get the canvas data URL
-    const canvasDataUrl = canvasRef.current?.toDataURL('image/png');
-
-    if (canvasDataUrl) {
-      // Make a request to your server
-      try {
-        const response = await fetch('http://localhost:3001/upload-avatar', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ canvasDataUrl }),
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          const cid = data.cid;
-
-
-          // Handle the uploaded image CID, you can use it as needed
-          handleImageUploaded(cid);
-        } else {
-          console.error('Failed to upload image to server:', response.statusText);
-        }
-      } catch (error) {
-        console.error('Error uploading image to server:', error);
-      }
-    } else {
-      // Handle the case where the canvas is not available or data URL is not generated
-      alert('Error saving the avatar. Please try again.');
-    }
-  };
-
-
-
-
-  // Create a temporary link element
-  /* const downloadLink = document.createElement('a');
-   downloadLink.href = canvasDataUrl;
-   downloadLink.download = 'avatar.png';*/
-
-  // Trigger a click event to download the image
-  /*document.body.appendChild(downloadLink);
-  downloadLink.click();
-  document.body.removeChild(downloadLink);*/
-
-  // Provide feedback to the user
-  /*alert(
-    ' Warning: A mischievous Spinky Demon is about to descend upon your local Storage! 🚀\n\n' +
-    "Remember, If you're not the Master of This Demon, consider obtaining permission.\n\n" +
-    'even demonz appreciate a bit of respect for intellectual property. 📜'
-  );
-} else {
-  // Handle the case where the canvas is not available or data URL is not generated
-  alert('Error saving the avatar. Please try again.');
-}*/
-
-
-  // ... (Previous code)
-
   const handleImageUploaded = async (cid: string) => {
     try {
       const response = await fetch(`https://dweb.link/ipfs/${cid}`);
@@ -201,134 +128,125 @@ export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
     }
   };
 
-  const handleSave = async () => {
-    // Get the canvas data URL
-    const canvasDataUrl = canvasRef.current?.toDataURL('image/png');
+  
 
-    if (canvasDataUrl) {
-      // Create image metadata
-      const imageMetadata = {
-        title: 'Spinky Demonz Club',
-        author: 'Guen12003',
-        uploadDate: new Date().toISOString(),
-        attributes: [
-          {
-            trait_type: 'Name',
-            value: avatarName, // Step 3: Include avatar name in the metadata
-          },
-          {
-            trait_type: 'Background',
-            value: 'Value',
-          },
-          {
-            trait_type: 'Skin',
-            value: selectedOptions.skin,
-          },
-          {
-            trait_type: 'Eyes',
-            value: selectedOptions.eyes,
-          },
-          {
-            trait_type: 'Mouth',
-            value: selectedOptions.mouth,
-          },
-          {
-            trait_type: 'Hat',
-            value: selectedOptions.hat,
-          },
-          {
-            trait_type: 'Beard',
-            value: selectedOptions.beard,
-          },
-          {
-            trait_type: 'Glasses',
-            value: selectedOptions.glasses,
-          },
-          {
-            trait_type: 'Level',
-            display_type: 'number',
-            value: 0,
-          },
-        ],
-      };
-      console.log(imageMetadata);
-      // Make a request to your server
-      try {
-        const response = await fetch('http://localhost:3001/upload-avatar', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ canvasDataUrl, metadata: imageMetadata }), // Include metadata in the request body
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          const cid = data.cid;
-          console.log('Uploaded Image CID:', cid);
-
-          // Handle the uploaded image CID, you can use it as needed
-          handleImageUploaded(cid);
-        } else {
-          console.error('Failed to upload image to server:', response.statusText);
-        }
-      } catch (error) {
-        console.error('Error uploading image to server:', error);
-      }
-    } else {
-      // Handle the case where the canvas is not available or data URL is not generated
-      alert('Error saving the avatar. Please try again.');
+  const setSelectedColor = (color: string) => {
+    if (generator) {
+      generator.selectedColor = color;
+      // Trigger the buildDemon function to update the canvas background color
+      generator.buildDemon();
     }
   };
 
+  async function getExampleImage() {
+    const canvasDataUrl = canvasRef.current?.toDataURL('image/png');
+    const response = await fetch(canvasDataUrl!);
 
+    if (!response.ok) {
+      throw new Error(`Error fetching image: [${response.status}]: ${response.statusText}`);
+    }
 
+    return response.blob();
+  }
 
+  async function storeExampleNFT() {
+    const image = await getExampleImage();
+    const imageMetadata = {
+      title: 'Spinky Demonz',
+      author: 'Guen12003',
+      uploadDate: new Date().toISOString(),
+      attributes: [
+        {
+          trait_type: 'Name',
+          value: avatarName,
+        },
+        {
+          trait_type: 'Background',
+          value: backgroundColor,
+        },
+        {
+          trait_type: 'Skin',
+          value: selectedOptions.skin,
+        },
+        {
+          trait_type: 'Eyes',
+          value: selectedOptions.eyes,
+        },
+        {
+          trait_type: 'Mouth',
+          value: selectedOptions.mouth,
+        },
+        {
+          trait_type: 'Hat',
+          value: selectedOptions.hat,
+        },
+        {
+          trait_type: 'Beard',
+          value: selectedOptions.beard,
+        },
+        {
+          trait_type: 'Glasses',
+          value: selectedOptions.glasses,
+        },
+        {
+          trait_type: 'Level',
+          display_type: 'number',
+          value: 0,
+        },
+      ],
+    };
+
+    const client = new NFTStorage({
+      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDgxZEFDYzBFQUJmOEYzMzRmZmRDRDczMDAxQTg5RUM5NTI2MDIyNzMiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTcwNjU3ODAwMTg3OCwibmFtZSI6IlNwaW5reU5GVFRvSVBGUyJ9._jgNhRC6KlBDvVNkvBIoq7r6XAGfHRYp19WQlb7wPtU", // Replace with your NFT.Storage token
+    });
+
+    const metadata = await client.store({
+      image,
+      name: avatarName,
+      description: "Spinky Demonzz NFT Collection",
+      properties: imageMetadata,
+    });
+
+    console.log('NFT data stored!');
+    console.log('Metadata URI: ', metadata.url);
+  }
 
   return (
-    <div className= "generator-container" >
-    <div className="canvas-container" >
-      {/* Canvas for drawing avatar */ }
-      < canvas ref = { canvasRef } className = "mx-auto" height = { 448} width = { 448} id = "avatarCanvas" > </canvas>
-        < /div>
+    <div className="generator-container">
+      <div className="canvas-container">
+        {/* Canvas for drawing avatar */}
+        <canvas ref={canvasRef} className="mx-auto" height={448} width={448} id="avatarCanvas"></canvas>
+      </div>
 
-        < div className = "OptionContainer mt-12" >
-          <CategoriesMenu
-          onCategoryChange={ handleCategoryChange }
-  onOptionChange = { handleOptionChange }
-    />
+      <div className="option-container mt-12">
+        <CategoriesMenu onCategoryChange={handleCategoryChange} onOptionChange={handleOptionChange} />
 
-    {/* Color palette for background */ }
-    < label htmlFor = "backgroundColorPicker" > Choose Background Color: </label>
-      < input
-  type = "color"
-  id = "backgroundColorPicker"
-  value = { backgroundColor }
-  onChange = { handleBackgroundColorChange }
-    />
+        {/* Color palette for background */}
+        <label htmlFor="backgroundColorPicker">Choose Background Color:</label>
+        <input
+          type="color"
+          id="backgroundColorPicker"
+          value={backgroundColor}
+          onChange={handleBackgroundColorChange}
+        />
 
-    {/* Input box for avatar name */ }
-    < label htmlFor = "avatarNameInput" > Avatar Name: </label>
-      < input
-  type = "text"
-  id = "avatarNameInput"
-  value = { avatarName }
-  onChange = {(e) => setAvatarName(e.target.value)}
-/>
-  < div className = "button-container" >
-    <Button onClick={ handleSave }> Save < /Button>
-      < /div>
-      < div className = "button-container" >
-        { isLoggedIn && <Button onClick={
-          (e) => {
-            // Add your Mint functionality here
-            console.log('Mint button clicked');
-          }
-}> Mint < /Button>}
-  < /div>
-  < /div>
-   {/* Display metadata */}
-   <MetadataDisplay metadata={jsonStructure} />
-  < /div>
+        {/* Input box for avatar name */}
+        <label htmlFor="avatarNameInput">Avatar Name:</label>
+        <input
+          type="text"
+          id="avatarNameInput"
+          value={avatarName}
+          onChange={(e) => setAvatarName(e.target.value)}
+        />
+
+     
+        <div className="button-container">
+           <Button onClick={(e) => storeExampleNFT()}>Mint</Button>
+        </div>
+      </div>
+
+      {/* Display metadata */}
+      <MetadataDisplay metadata={jsonStructure} />
+    </div>
   );
 };
