@@ -1,0 +1,51 @@
+{
+    "name": " ",
+    "description":"NFT collection test",
+    "attributes":
+    attributes: [
+        {
+          trait_type: 'Name',
+          value: avatarName,
+        },
+        {
+          trait_type: 'Background',
+          value: backgroundColor,
+        },
+        {
+          trait_type: 'Skin',
+          value: selectedOptions.skin,
+        },
+        {
+          trait_type: 'Eyes',
+          value: selectedOptions.eyes,
+        },
+        {
+          trait_type: 'Mouth',
+          value: selectedOptions.mouth,
+        },
+        {
+          trait_type: 'Hat',
+          value: selectedOptions.hat,
+        },
+        {
+          trait_type: 'Beard',
+          value: selectedOptions.beard,
+        },
+        {
+          trait_type: 'Glasses',
+          value: selectedOptions.glasses,
+        },
+        {
+          trait_type: 'Level',
+          display_type: 'number',
+          value: 0,
+        },
+      ],
+      "image":{
+        "href":"",
+        "hash":"",
+        "ipfsuri":"",
+        "ipfsCid":"",
+        "fileName":""
+      }
+}

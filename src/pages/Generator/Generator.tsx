@@ -128,8 +128,6 @@ export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
     }
   };
 
-  
-
   const setSelectedColor = (color: string) => {
     if (generator) {
       generator.selectedColor = color;
@@ -151,61 +149,60 @@ export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
 
   async function storeExampleNFT() {
     const image = await getExampleImage();
-    const imageMetadata = {
-      title: 'Spinky Demonz',
-      author: 'Guen12003',
-      uploadDate: new Date().toISOString(),
-      attributes: [
-        {
-          trait_type: 'Name',
-          value: avatarName,
-        },
-        {
-          trait_type: 'Background',
-          value: backgroundColor,
-        },
-        {
-          trait_type: 'Skin',
-          value: selectedOptions.skin,
-        },
-        {
-          trait_type: 'Eyes',
-          value: selectedOptions.eyes,
-        },
-        {
-          trait_type: 'Mouth',
-          value: selectedOptions.mouth,
-        },
-        {
-          trait_type: 'Hat',
-          value: selectedOptions.hat,
-        },
-        {
-          trait_type: 'Beard',
-          value: selectedOptions.beard,
-        },
-        {
-          trait_type: 'Glasses',
-          value: selectedOptions.glasses,
-        },
-        {
-          trait_type: 'Level',
-          display_type: 'number',
-          value: 0,
-        },
-      ],
+
+    const nft = {
+      image,
+      name: avatarName,
+      description: "Spinky Demonzz NFT Collection",
+      properties: {
+        type: "avatar",
+        attributes: [
+          {
+            trait_type: 'Name',
+            value: avatarName,
+          },
+          {
+            trait_type: 'Background',
+            value: backgroundColor,
+          },
+          {
+            trait_type: 'Skin',
+            value: selectedOptions.skin,
+          },
+          {
+            trait_type: 'Eyes',
+            value: selectedOptions.eyes,
+          },
+          {
+            trait_type: 'Mouth',
+            value: selectedOptions.mouth,
+          },
+          {
+            trait_type: 'Hat',
+            value: selectedOptions.hat,
+          },
+          {
+            trait_type: 'Beard',
+            value: selectedOptions.beard,
+          },
+          {
+            trait_type: 'Glasses',
+            value: selectedOptions.glasses,
+          },
+          {
+            trait_type: 'Level',
+            display_type: 'number',
+            value: 0,
+          },
+        ],
+      },
     };
 
     const client = new NFTStorage({
       token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDgxZEFDYzBFQUJmOEYzMzRmZmRDRDczMDAxQTg5RUM5NTI2MDIyNzMiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTcwNjU3ODAwMTg3OCwibmFtZSI6IlNwaW5reU5GVFRvSVBGUyJ9._jgNhRC6KlBDvVNkvBIoq7r6XAGfHRYp19WQlb7wPtU", // Replace with your NFT.Storage token
     });
 
-    const metadata = await client.store({
-      image,
-      name: avatarName,
-      description: "Spinky Demonzz NFT Collection",
-      properties: imageMetadata,
-    });
+    const metadata = await client.store(nft);
 
     console.log('NFT data stored!');
     console.log('Metadata URI: ', metadata.url);
@@ -239,9 +236,8 @@ export const Generator: React.FC<GeneratorProps> = ({ isLoggedIn }) => {
           onChange={(e) => setAvatarName(e.target.value)}
         />
 
-     
         <div className="button-container">
-           <Button onClick={(e) => storeExampleNFT()}>Mint</Button>
+          <Button onClick={(e) => storeExampleNFT()}>Mint</Button>
         </div>
       </div>
 
